@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import fetchPartTypes from "../../services/partTypes";
 
-function PartsPage(): JSX.Element {
+function PartPage(): JSX.Element {
     const [partsType, setPartsType] = useState<Array<string>>();
     useEffect(() => {
         fetchPartTypes()
@@ -18,10 +18,9 @@ function PartsPage(): JSX.Element {
             .catch((err) => console.log("error : ", err));
     }, []);
     if (partsType !== undefined) {
-        // limpar console.logs
-        console.log("estou a ler isto: ", partsType[2]);
+        // loading spiner
     }
     return <h1>Parts Page</h1>;
 }
 
-export default PartsPage;
+export default PartPage;
