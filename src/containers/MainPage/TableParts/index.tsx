@@ -20,13 +20,6 @@ function TableParts(params: ITableParts): JSX.Element {
         navigate(`/parts/${encodeURI(currentTarget.id.toLowerCase())}`);
     };
 
-    const navigate = useNavigate();
-    const handleClick: React.MouseEventHandler<HTMLTableRowElement> = ({
-        currentTarget,
-    }): void => {
-        navigate(`/parts/${encodeURI(currentTarget.id.toLowerCase())}`);
-    };
-
     return (
         <TableContainer>
             <Table>
