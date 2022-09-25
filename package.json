@@ -3,6 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.10",
+    "@chakra-ui/react": "^2.3.4",
+    "@chakra-ui/theme": "^2.1.12",
+    "@chakra-ui/theme-tools": "^2.0.11",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -10,8 +16,11 @@
     "@types/node": "^16.7.13",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "debounce": "^1.2.1",
+    "framer-motion": "^7.3.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.4.0",
     "react-router-dom": "^6.4.1",
     "react-scripts": "5.0.1",
     "typescript": "^4.4.2",
@@ -42,6 +51,7 @@
     ]
   },
   "devDependencies": {
+    "@types/debounce": "^1.2.1",
     "@typescript-eslint/eslint-plugin": "^5.38.0",
     "@typescript-eslint/parser": "^5.38.0",
     "eslint": "^7.32.0 || ^8.2.0",

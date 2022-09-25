@@ -1,7 +1,7 @@
-interface PartsInterface {
+interface IPartsInterface {
     name: string;
     price: string;
     type: string;
 }
 
-export default PartsInterface;
+export default IPartsInterface;

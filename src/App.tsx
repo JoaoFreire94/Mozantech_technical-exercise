@@ -1,17 +1,18 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import "./App.css";
+import "./styles/index.css";
 import ErrorPage from "./containers/ErrorPage";
 import MainPage from "./containers/MainPage";
-import PartsPage from "./containers/PartsPage";
+import PartPage from "./containers/PartPage";
 
 function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<MainPage />} />
-                <Route path="parts" element={<PartsPage />} />
+                <Route path="/parts" element={<MainPage />}>
+                    <Route path="/:part" element={<PartPage />} />
+                </Route>
                 <Route path="/*" element={<ErrorPage />} />
             </Routes>
         </BrowserRouter>
