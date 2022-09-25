@@ -10,10 +10,11 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/parts" element={<MainPage />}>
-                    <Route path="/:part" element={<PartPage />} />
+                <Route path="parts">
+                    <Route index element={<MainPage />} />
+                    <Route path=":partName" element={<PartPage />} />
                 </Route>
-                <Route path="/*" element={<ErrorPage />} />
+                <Route path="*" element={<ErrorPage />} />
             </Routes>
         </BrowserRouter>
     );
