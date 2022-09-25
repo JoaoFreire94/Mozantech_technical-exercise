@@ -17,8 +17,8 @@ function PartPage(): JSX.Element | null {
             .then((partFetched) => setPart(partFetched))
             .catch((err) => console.log(err))
             .finally(() => setLoading(false));
-    }, [partName]);
-    console.log(part);
+    }, []);
+
     if (loading) {
         return (
             <Center>
@@ -32,9 +32,9 @@ function PartPage(): JSX.Element | null {
     return (
         <Center className="PartPage">
             <Heading>Store Parts</Heading>
-            <Text>{part[0]?.name}</Text>
-            <Text>{part[0]?.type}</Text>
-            <Text>{part[0]?.price}</Text>
+            <Text>{part[0].name}</Text>
+            <Text>{part[0].type}</Text>
+            <Text>{part[0].price}</Text>
         </Center>
     );
 }
