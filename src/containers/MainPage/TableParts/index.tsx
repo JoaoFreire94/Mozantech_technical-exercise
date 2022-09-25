@@ -13,6 +13,12 @@ import { ITableParts } from "./interface";
 
 function TableParts(params: ITableParts): JSX.Element {
     const { parts } = params;
+    const navigate = useNavigate();
+    const handleClick: React.MouseEventHandler<HTMLTableRowElement> = ({
+        currentTarget,
+    }): void => {
+        navigate(`/parts/${encodeURI(currentTarget.id.toLowerCase())}`);
+    };
 
     const navigate = useNavigate();
     const handleClick: React.MouseEventHandler<HTMLTableRowElement> = ({
@@ -23,7 +29,7 @@ function TableParts(params: ITableParts): JSX.Element {
 
     return (
         <TableContainer>
-            <Table variant="simple">
+            <Table>
                 <Thead>
                     <Tr>
                         <Th>Name</Th>
