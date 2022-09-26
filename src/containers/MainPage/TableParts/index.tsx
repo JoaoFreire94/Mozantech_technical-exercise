@@ -22,7 +22,7 @@ function TableParts(params: ITableParts): JSX.Element {
 
     return (
         <TableContainer>
-            <Table>
+            <Table variant="striped" colorScheme="teal">
                 <Thead>
                     <Tr>
                         <Th>Name</Th>

@@ -1,4 +1,3 @@
-import { ChevronDownIcon } from "@chakra-ui/icons";
 import { Menu, Button, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 
 import fetchParts from "../../../services/parts";
@@ -11,6 +10,7 @@ function MenuTypes(param: IMenuTypesInterface): JSX.Element {
         setParts,
         setLoading,
         partTypeSelected,
+        loading,
     } = param;
 
     const onChangeSearch: React.MouseEventHandler<HTMLButtonElement> = ({
@@ -30,7 +30,7 @@ function MenuTypes(param: IMenuTypesInterface): JSX.Element {
     // TO-DO IN LINE FUNCTION CALL
     return (
         <Menu>
-            <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+            <MenuButton as={Button} disabled={loading}>
                 {partTypeSelected === undefined ? "Type" : partTypeSelected}
             </MenuButton>
             <MenuList>
