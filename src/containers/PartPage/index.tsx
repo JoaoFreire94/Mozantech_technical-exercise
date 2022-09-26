@@ -11,6 +11,7 @@ import {
     Tr,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import { useParams } from "react-router-dom";
 
 import fetchParts from "../../services/parts";
@@ -26,13 +27,13 @@ function PartPage(): JSX.Element | null {
         fetchParts(undefined, partName)
             .then((res) => res.json())
             .then((partFetched) => setPart(partFetched))
-            .catch((err) => console.log(err))
+            .catch((err) => toast.error("Something went wrong: ", err))
             .finally(() => setLoading(false));
     }, []);
 
     if (loading) {
         return (
-            <Center>
+            <Center mt="40">
                 <Spinner />
             </Center>
         );
@@ -41,9 +42,9 @@ function PartPage(): JSX.Element | null {
         return null;
     }
     return (
-        <Center className="PartPage">
+        <Center className="PartPage" mt="10">
             <Heading color="teal">Store Parts</Heading>
-            <TableContainer>
+            <TableContainer mt="10">
                 <Table variant="striped" colorScheme="teal">
                     <Thead>
                         <Tr>
