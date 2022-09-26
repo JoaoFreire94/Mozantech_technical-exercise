@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { debounce } from "debounce";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { toast } from "react-hot-toast";
 
 import fetchParts from "../../services/parts";
 import IPartsInterface from "../../services/parts/interface";
@@ -29,14 +30,13 @@ function MainPage(): JSX.Element {
     const [loading, setLoading] = useState(false);
     const [reset, setReset] = useState<boolean>(false);
 
-    // TO-DO TRATAR ERRO
     const debouncedFetchPart = useCallback(
         debounce((value: string) => {
             setLoading(true);
             fetchParts(undefined, value)
                 .then((res) => res.json())
                 .then((partsFetched) => setParts(partsFetched))
-                .catch((err) => console.log(err))
+                .catch((err) => toast.error("Something went wrong: ", err))
                 .finally(() => setLoading(false));
         }, 1000),
         []
@@ -64,8 +64,10 @@ function MainPage(): JSX.Element {
                         .json()
                         .then((partsFetched) => setParts(partsFetched));
                 } else {
-                    // tratar erro
-                    console.log(fetchPartsResult.reason);
+                    toast.error(
+                        "Something went wrong: ",
+                        fetchPartsResult.reason
+                    );
                 }
                 if (fetchPartTypesResult.status === "fulfilled") {
                     fetchPartTypesResult.value
@@ -78,8 +80,10 @@ function MainPage(): JSX.Element {
                             setPartsType(tempArray);
                         });
                 } else {
-                    // tratar este erro
-                    console.log(fetchPartTypesResult.reason);
+                    toast.error(
+                        "Something went wrong: ",
+                        fetchPartTypesResult.reason
+                    );
                 }
             })
             .finally(() => setLoading(false));
@@ -129,8 +133,10 @@ function MainPage(): JSX.Element {
     }, [ascendentPressed]);
     return (
         <Center className="MainPage">
-            <Heading color="teal">Store Parts</Heading>
-            <Center w="40%">
+            <Heading color="teal" mt="10" mb="5">
+                Store Parts
+            </Heading>
+            <Center w="40%" mb="10">
                 <Input
                     placeholder="Search..."
                     value={searchType || ""}
@@ -146,7 +152,11 @@ function MainPage(): JSX.Element {
                     setParts={setParts}
                     partTypeSelected={partTypeSelected}
                 />
-                <Button rightIcon={priceIcon} onClick={ascendentButtonHandler}>
+                <Button
+                    rightIcon={priceIcon}
+                    onClick={ascendentButtonHandler}
+                    disabled={loading}
+                >
                     Price
                 </Button>
                 <IconButton
@@ -155,9 +165,10 @@ function MainPage(): JSX.Element {
                     aria-label="Reset"
                     onClick={resetTableHandler}
                     icon={<CloseIcon />}
+                    disabled={loading}
                 />
             </Center>
-            {loading && <Spinner size="xl" />}
+            {loading && <Spinner size="xl" m="6" />}
             {parts !== undefined && !loading && (
                 <TableParts
                     parts={parts}

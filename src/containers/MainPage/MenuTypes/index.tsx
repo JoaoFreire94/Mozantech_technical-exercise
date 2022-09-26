@@ -1,4 +1,5 @@
 import { Menu, Button, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
+import { toast } from "react-hot-toast";
 
 import fetchParts from "../../../services/parts";
 import { IMenuTypesInterface } from "./interface";
@@ -17,17 +18,16 @@ function MenuTypes(param: IMenuTypesInterface): JSX.Element {
         currentTarget,
     }) => {
         const type = currentTarget.firstChild?.textContent;
-        console.log(type);
         if (!type) return;
         setLoading(true);
         fetchParts(type)
             .then((res) => res.json())
             .then((partsFetched) => setParts(partsFetched))
+            .catch((err) => toast.error("Something went wrong: ", err))
             .finally(() => setLoading(false));
         setPartTypeSelected(type);
     };
 
-    // TO-DO IN LINE FUNCTION CALL
     return (
         <Menu>
             <MenuButton as={Button} disabled={loading}>
