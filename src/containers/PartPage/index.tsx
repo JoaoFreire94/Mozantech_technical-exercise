@@ -1,4 +1,15 @@
-import { Center, Heading, Spinner, Text } from "@chakra-ui/react";
+import {
+    Center,
+    Heading,
+    Spinner,
+    Table,
+    TableContainer,
+    Tbody,
+    Td,
+    Th,
+    Thead,
+    Tr,
+} from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -31,10 +42,25 @@ function PartPage(): JSX.Element | null {
     }
     return (
         <Center className="PartPage">
-            <Heading>Store Parts</Heading>
-            <Text>{part[0].name}</Text>
-            <Text>{part[0].type}</Text>
-            <Text>{part[0].price}</Text>
+            <Heading color="teal">Store Parts</Heading>
+            <TableContainer>
+                <Table variant="striped" colorScheme="teal">
+                    <Thead>
+                        <Tr>
+                            <Th>Name</Th>
+                            <Th>Type</Th>
+                            <Th>Price</Th>
+                        </Tr>
+                    </Thead>
+                    <Tbody>
+                        <Tr>
+                            <Td>{part[0].name}</Td>
+                            <Td>{part[0].type}</Td>
+                            <Td>{part[0].price}</Td>
+                        </Tr>
+                    </Tbody>
+                </Table>
+            </TableContainer>
         </Center>
     );
 }

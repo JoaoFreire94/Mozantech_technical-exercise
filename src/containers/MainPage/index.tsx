@@ -129,15 +129,17 @@ function MainPage(): JSX.Element {
     }, [ascendentPressed]);
     return (
         <Center className="MainPage">
-            <Heading>Store Parts</Heading>
-            <Center>
+            <Heading color="teal">Store Parts</Heading>
+            <Center w="40%">
                 <Input
                     placeholder="Search..."
                     value={searchType || ""}
                     onChange={onChangeSearch}
                     disabled={loading}
+                    w="40%"
                 />
                 <MenuTypes
+                    loading={loading}
                     setLoading={setLoading}
                     partTypes={partsType || []}
                     setPartTypeSelected={setPartTypeSelected}
@@ -150,13 +152,13 @@ function MainPage(): JSX.Element {
                 <IconButton
                     variant="outline"
                     colorScheme="teal"
-                    aria-label="Send email"
+                    aria-label="Reset"
                     onClick={resetTableHandler}
                     icon={<CloseIcon />}
                 />
             </Center>
-            {loading && <Spinner />}
-            {parts !== undefined && (
+            {loading && <Spinner size="xl" />}
+            {parts !== undefined && !loading && (
                 <TableParts
                     parts={parts}
                     ascendent={ascendentPressed}

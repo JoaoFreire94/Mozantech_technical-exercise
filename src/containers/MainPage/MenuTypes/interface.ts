@@ -12,4 +12,5 @@ export interface IMenuTypesInterface {
     >;
     setLoading: React.Dispatch<React.SetStateAction<boolean>>;
     partTypeSelected?: string;
+    loading: boolean;
 }
